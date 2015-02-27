@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
 <body>
 <h1>Deep links</h1>
 <ul>
@@ -9,6 +12,42 @@
 	<li><a href="asos://home?floor=men">asos://home?floor=men</a></li>
 	<li><a href="asos://home?floor=women">asos://home?floor=women</a></li>
 	<li><a href="asos://recs">asos://recs</a></li>
+	<li><a href="asos://bag">asos://bag</a></li>
+	<li><a href="asos://savedlist">asos://savedlist</a></li>
 </ul>
+
+<script type="text/javascript">
+    $(document).ready(function() { 
+
+        $('#pushform').submit(function(event) { 
+        	/* stop form from submitting normally */
+      		event.preventDefault();
+	    	var appId = $('#appId').val();
+	    	var senderSecret = $('#sendersecret').val();
+	    	var customerId = $('#customerId').val();
+	    	var url = $('#url').val();
+
+	    	var code = 'curl "https://api.pushio.com/api/v1/notify_app/' + appId + '/' + senderSecret + '" -d \'payload={"message":"Test", "url": "' + url + '"}&tag_query=$user_identifier = "' + customerId + '"\''
+	    	console.log(code);
+	    	$("#textbox").val(code)
+        }); 
+    });
+</script>
+
+<h1>Push form</h1>
+<form id="pushform" action="/" title="" method="post">
+<div><label class="title">App ID</label><br/><input type="text" id="appId" name="appId" value="" ></div><br/>
+<div><label class="title">Sender Secret</label><br/><input type="text" id="sendersecret" name="sendersecret" value="" ></div><br/>
+<div><label class="title">Customer ID</label><br/><input type="text" id="customerId" name="customerId" value="" ></div><br/>
+<div><label class="title">URL</label><br/><input type="text" id="url" name="url" value="asos://product?iid=4573580"></div><br/>
+<div><input type="submit" id="submitButton"  name="submitButton" value="Submit"></div>
+</form>
+<h3>Paste this code and run in Terminal.app to send a push to your device</h3>
+<input type="text"
+       cols="40" 
+       rows="5" 
+       style="width:800px; height:40px;" 
+       id="textbox" 
+       value=""/>
 </body>
 </html>
