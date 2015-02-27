@@ -27,7 +27,7 @@
 	    	var customerId = $('#customerId').val();
 	    	var url = $('#url').val();
 
-	    	var code = 'curl "https://api.pushio.com/api/v1/notify_app/' + appId + '/' + senderSecret + '" -d \'payload={"message":"Test", "url": "' + url + '"}&tag_query=$user_identifier = "' + customerId + '"\''
+	    	var code = 'curl "https://api.pushio.com/api/v1/notify_app/' + appId + '/' + senderSecret + '" -d \'payload={"message":"Test","extra":{"url":"' + url + '"}}&tag_query=$user_identifier = "' + customerId + '"\''
 	    	console.log(code);
 	    	$("#textbox").val(code)
         }); 
