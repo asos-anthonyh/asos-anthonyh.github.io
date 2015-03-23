@@ -23,7 +23,7 @@
         	/* stop form from submitting normally */
       		event.preventDefault();
 	    	var appId = $('#appId').val();
-	    	var senderSecret = $('#sendersecret').val();
+	    	var senderSecret = $('#senderSecret').val();
 	    	var customerId = $('#customerId').val();
 	    	var url = $('#url').val();
 
@@ -37,7 +37,7 @@
 <h1>Push form</h1>
 <form id="pushform" action="/" title="" method="post">
 <div><label class="title">App ID</label><br/><input type="text" id="appId" name="appId" value="" ></div><br/>
-<div><label class="title">Sender Secret</label><br/><input type="text" id="sendersecret" name="sendersecret" value="" ></div><br/>
+<div><label class="title">Sender Secret</label><br/><input type="text" id="senderSecret" name="senderSecret" value="" ></div><br/>
 <div><label class="title">Customer ID</label><br/><input type="text" id="customerId" name="customerId" value="" ></div><br/>
 <div><label class="title">URL</label><br/><input type="text" id="url" name="url" value="asos://product?iid=4573580"></div><br/>
 <div><input type="submit" id="submitButton"  name="submitButton" value="Submit"></div>
