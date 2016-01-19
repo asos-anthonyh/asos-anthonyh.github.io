@@ -11,6 +11,7 @@
 body {
 	font-family: Helvetica, Sans-Serif;
 	font-size: 18px;
+	width: 768;
 }
 
 a {
@@ -46,6 +47,8 @@ label {
 	<li><label class="title">Affilliate ID</label><input type="text" id="affID" name="affID" value="123"></li>
 	<li><label class="title">CTA ref</label><input type="text" id="ctaRef" name="ctaRef" value="23242342"></li>
 	<li><label class="title">Channel ref</label><input type="text" id="channelRef" name="channelRef" value="456"></li>
+	<li><label class="title">Customer ref</label><input type="text" id="custref" name="custref" value="4454532423"></li>
+	<li><label class="title">Campaign ID</label><input type="text" id="campaignid" name="campaignid" value="Spring2016"></li>
 	<li><label class="title">Pub ref</label><input type="text" id="asosPubRef" name="asosPubRef" value="789"></li>
 	<li><label class="title">Connect transaction ID</label><input type="text" id="asosConnectTransactionId" name="asosConnectTransactionId" value="FUKUOP"></li>
 	<li><label class="title">Search query</label><input type="text" id="q" name="q" value="Valentines"></li>
@@ -74,7 +77,6 @@ Please note: No validation is provided for QA purposes.
 			var parameters = generateParameters()
 			pages.forEach(function(pageType) {
 				appendLink(host + '://' + pageType + '?' + parameters)
-				console.log(pageType)	
 			})
     	}
 
@@ -87,13 +89,15 @@ Please note: No validation is provided for QA purposes.
 	    	var affID = valueForId('affID');
 	    	var ctaRef = valueForId('ctaRef');
 	    	var channelRef = valueForId('channelRef');
+	    	var customerRef = valueForId('custref');
+			var campaignId = valueForId('campaignid');
 	    	var asosPubRef = valueForId('asosPubRef');
 	    	var asosConnectTransactionId = valueForId('asosConnectTransactionId');
 	    	var q = valueForId('q');
 	    	var floor = valueForId('floor');
 	    	var cID = valueForId('cID');
 	    	var iID = valueForId('iID');
-	    	var rawParams = {"affID": affID, "ctaRef": ctaRef, "channelRef": channelRef, "asosPubRef": asosPubRef, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cID": cID, "iID": iID, "q": q}
+	    	var rawParams = {"affid": affID, "ctaRef": ctaRef, "channelref": channelRef, "custref" : customerRef, "campaignid" : campaignId, "asosPubRef": asosPubRef, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cid": cID, "iid": iID, "q": q}
 
 	    	var count = Object.keys(rawParams).length
 	    	var index = 0
@@ -131,7 +135,6 @@ Please note: No validation is provided for QA purposes.
 	    	var url = $('#url').val();
 
 	    	var code = 'curl "https://api.pushio.com/api/v1/notify_app/' + appId + '/' + senderSecret + '" -d \'payload={"message":"Test","extra":{"url":"' + url + '"}}&tag_query=$user_identifier = "' + customerId + '"\''
-	    	console.log(code);
 	    	$("#textbox").val(code)
         });
 
