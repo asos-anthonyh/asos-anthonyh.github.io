@@ -4,20 +4,123 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-<h1>Deep links</h1>
+
+<!-- Some CSS -->
+<style media="screen" type="text/css">
+
+body {
+	font-family: Helvetica, Sans-Serif;
+	font-size: 18px;
+}
+
+a {
+	font-size: 20px;
+}
+
+h1 {
+	font-size: 22px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+	padding-bottom: 10px;
+}
+
+input {
+	padding: 4px;
+}
+
+label {
+	padding-right: 10px;
+}
+
+</style>
+
+<h1>Options</h1>
+<form id="options" action="/" title="" method="post">
 <ul>
-	<li><a href="asos://product?iid=4573580&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://product?iid=4573580&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://category?cid=6992&custref=57297158&affid=14281&channelref=email&name=New%20In%3A%20Shoes%20%26%20Accs&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://category?cid=6992&custref=57297158&affid=14281&channelref=email&name=New%20In%3A%20Shoes%20%26%20Accs&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://search?q=jeans&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://search?q=jeans&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://home?floor=men&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://home?floor=men&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://home?floor=women&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://home?floor=women&custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://recs?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://recs?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://bag?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://bag?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
-	<li><a href="asos://savedlist?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f">asos://savedlist?custref=57297158&affid=14281&channelref=email&asosPubRef=abc&asosConnectTransactionId=1028f16897c6cbe6c887c2bc13371f</a></li>
+	<li><label class="title">Host</label><input type="text" id="host" name="host" value="asos"></li>
+	<li><label class="title">Affilliate ID</label><input type="text" id="affID" name="affID" value="123"></li>
+	<li><label class="title">CTA ref</label><input type="text" id="ctaRef" name="ctaRef" value="23242342"></li>
+	<li><label class="title">Channel ref</label><input type="text" id="channelRef" name="channelRef" value="456"></li>
+	<li><label class="title">Pub ref</label><input type="text" id="asosPubRef" name="asosPubRef" value="789"></li>
+	<li><label class="title">Connect transaction ID</label><input type="text" id="asosConnectTransactionId" name="asosConnectTransactionId" value="FUKUOP"></li>
+	<li><label class="title">Search query</label><input type="text" id="q" name="q" value="Valentines"></li>
+	<li><label class="title">Floor</label><input type="text" id="floor" name="floor" value="Women"></li>
+	<li><label class="title">Category ID</label><input type="text" id="cID" name="cID" value="123"></li>
+	<li><label class="title">IID</label><input type="text" id="iID" name="iID" value="4601688"></li>
+	<div><input type="submit" id="submitButton"  name="submitButton" value="Apply options"></div>
 </ul>
+</form>
+
+<div id="links">
+<ul>
+	<!-- CODE BE INJECTED HERE, ARRRRR -->
+</ul>
+</div>
+
+Please note: No validation is provided for QA purposes.
 
 <script type="text/javascript">
     $(document).ready(function() { 
+
+    	var pages = ["product", "category", "search", "home", "recs", "bag", "savedlist"]
+
+    	function createLinks() {
+    		var host = $('#host').val();
+			var parameters = generateParameters()
+			pages.forEach(function(pageType) {
+				appendLink(host + '://' + pageType + '?' + parameters)
+				console.log(pageType)	
+			})
+    	}
+
+    	function valueForId(id) {
+    		return encodeURIComponent($('#' + id).val());
+    	}
+
+    	function generateParameters() {
+    		var params = ""
+	    	var affID = valueForId('affID');
+	    	var ctaRef = valueForId('ctaRef');
+	    	var channelRef = valueForId('channelRef');
+	    	var asosPubRef = valueForId('asosPubRef');
+	    	var asosConnectTransactionId = valueForId('asosConnectTransactionId');
+	    	var q = valueForId('q');
+	    	var floor = valueForId('floor');
+	    	var cID = valueForId('cID');
+	    	var iID = valueForId('iID');
+	    	var rawParams = {"affID": affID, "ctaRef": ctaRef, "channelRef": channelRef, "asosPubRef": asosPubRef, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cID": cID, "iID": iID, "q": q}
+
+	    	var count = Object.keys(rawParams).length
+	    	var index = 0
+	    	jQuery.each(rawParams, function(key, value) {
+	    		index++
+	    		if (value != undefined && value != "") {
+	    			var terminatingChar = (index == count) ? "" : "&";
+					params = params.concat(key + "=" + value + terminatingChar)
+	    		}
+	    	})
+	    	return params
+    	}
+
+    	function appendLink(urlString) {
+    		$('#links ul').append('<li> <a href="' + urlString + '">' + urlString + '</a>');
+    	}
+
+    	function removeAllLinks() {
+    		$('#links li').remove();
+    	}
+
+        $('#options').submit(function(event) { 
+        	/* stop form from submitting normally */
+      		event.preventDefault();
+      		removeAllLinks()
+      		createLinks()
+        }); 
 
         $('#pushform').submit(function(event) { 
         	/* stop form from submitting normally */
@@ -30,7 +133,9 @@
 	    	var code = 'curl "https://api.pushio.com/api/v1/notify_app/' + appId + '/' + senderSecret + '" -d \'payload={"message":"Test","extra":{"url":"' + url + '"}}&tag_query=$user_identifier = "' + customerId + '"\''
 	    	console.log(code);
 	    	$("#textbox").val(code)
-        }); 
+        });
+
+        createLinks() 
     });
 </script>
 
@@ -40,7 +145,7 @@
 <div><label class="title">Sender Secret</label><br/><input type="text" id="senderSecret" name="senderSecret" value="" ></div><br/>
 <div><label class="title">Customer ID</label><br/><input type="text" id="customerId" name="customerId" value="" ></div><br/>
 <div><label class="title">URL</label><br/><input type="text" id="url" name="url" value="asos://product?iid=4573580"></div><br/>
-<div><input type="submit" id="submitButton"  name="submitButton" value="Submit"></div>
+<div><input type="submit" id="submitButton"  name="submitButton" value="Generate Push code"></div>
 </form>
 <h3>Paste this code and run in Terminal.app to send a push to your device</h3>
 <input type="text"
