@@ -49,7 +49,7 @@ label {
 	<li><label class="title">Channel ref</label><input type="text" id="channelRef" name="channelRef" value="456"></li>
 	<li><label class="title">Customer ref</label><input type="text" id="custref" name="custref" value="4454532423"></li>
 	<li><label class="title">Campaign ID</label><input type="text" id="campaignid" name="campaignid" value="Spring2016"></li>
-	<li><label class="title">Pub ref</label><input type="text" id="asosPubRef" name="asosPubRef" value="789"></li>
+	<li><label class="title">Pub ref</label><input type="text" id="pubref" name="pubref" value="789"></li>
 	<li><label class="title">Connect transaction ID</label><input type="text" id="asosConnectTransactionId" name="asosConnectTransactionId" value="FUKUOP"></li>
 	<li><label class="title">Search query</label><input type="text" id="q" name="q" value="Valentines"></li>
 	<li><label class="title">Floor</label><input type="text" id="floor" name="floor" value="Women"></li>
@@ -91,13 +91,13 @@ Please note: No validation is provided for QA purposes.
 	    	var channelRef = valueForId('channelRef');
 	    	var customerRef = valueForId('custref');
 			var campaignId = valueForId('campaignid');
-	    	var asosPubRef = valueForId('asosPubRef');
+	    	var pubref = valueForId('pubref');
 	    	var asosConnectTransactionId = valueForId('asosConnectTransactionId');
 	    	var q = valueForId('q');
 	    	var floor = valueForId('floor');
 	    	var cID = valueForId('cID');
 	    	var iID = valueForId('iID');
-	    	var rawParams = {"affid": affID, "ctaRef": ctaRef, "channelref": channelRef, "custref" : customerRef, "campaignid" : campaignId, "asosPubRef": asosPubRef, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cid": cID, "iid": iID, "q": q}
+	    	var rawParams = {"affid": affID, "ctaRef": ctaRef, "channelref": channelRef, "custref" : customerRef, "campaignid" : campaignId, "pubref": pubref, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cid": cID, "iid": iID, "q": q}
 
 	    	var count = Object.keys(rawParams).length
 	    	var index = 0
