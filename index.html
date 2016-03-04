@@ -50,7 +50,7 @@ label {
 	<li><label class="title">Customer ref</label><input type="text" id="custref" name="custref" value="4454532423"></li>
 	<li><label class="title">Campaign ID</label><input type="text" id="campaignid" name="campaignid" value="Spring2016"></li>
 	<li><label class="title">Pub ref</label><input type="text" id="pubref" name="pubref" value="789"></li>
-	<li><label class="title">Connect transaction ID</label><input type="text" id="asosConnectTransactionId" name="asosConnectTransactionId" value="FUKUOP"></li>
+	<li><label class="title">Transaction ID</label><input type="text" id="transaction_id" name="transaction_id" value="FUKUOP"></li>
 	<li><label class="title">Search query</label><input type="text" id="q" name="q" value="Valentines"></li>
 	<li><label class="title">Floor</label><input type="text" id="floor" name="floor" value="Women"></li>
 	<li><label class="title">Category ID</label><input type="text" id="cID" name="cID" value="1000-6046-6749"></li>
@@ -92,12 +92,12 @@ Please note: No validation is provided for QA purposes.
 	    	var customerRef = valueForId('custref');
 			var campaignId = valueForId('campaignid');
 	    	var pubref = valueForId('pubref');
-	    	var asosConnectTransactionId = valueForId('asosConnectTransactionId');
+	    	var asosConnectTransactionId = valueForId('transaction_id');
 	    	var q = valueForId('q');
 	    	var floor = valueForId('floor');
 	    	var cID = valueForId('cID');
 	    	var iID = valueForId('iID');
-	    	var rawParams = {"affid": affID, "ctaRef": ctaRef, "channelref": channelRef, "custref" : customerRef, "campaignid" : campaignId, "pubref": pubref, "asosConnectTransactionId": asosConnectTransactionId, "floor": floor, "cid": cID, "iid": iID, "q": q}
+	    	var rawParams = {"affid": affID, "ctaRef": ctaRef, "channelref": channelRef, "custref" : customerRef, "campaignid" : campaignId, "pubref": pubref, "transaction_id": asosConnectTransactionId, "floor": floor, "cid": cID, "iid": iID, "q": q}
 
 	    	var count = Object.keys(rawParams).length
 	    	var index = 0
